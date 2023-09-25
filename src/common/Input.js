@@ -16,7 +16,7 @@ const Input = () => {
     setCharacterName(e.target.value);
   };
 
-  // 기본효과,추가효과 출력코드
+  // 기본효과,추가효과 없으면 공백
   function getEffectValue(tooltip, elementKey) {
     if (tooltip && tooltip[elementKey] && tooltip[elementKey].value && tooltip[elementKey].value.Element_001) {
       return tooltip[elementKey].value.Element_001;
@@ -48,7 +48,7 @@ const getCharacter = async () => {
       }
     };
     
-    
+    // <div dangerouslySetInnerHTML={{ __html: htmlMessage }}>       <<== HTML코드 문자열을 __HTML 속성에 넣어서 객체에 전달
     return (
       <div>
       <input onChange={onChange} value={characterName} />
@@ -72,5 +72,3 @@ const getCharacter = async () => {
   );
             }
   export default Input;
-  
-
