@@ -1,0 +1,17 @@
+.header {
+  height: 78px;
+  background-color: tomato;
+}
+
+#navContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navMain {
+  flex: 2;
+}
+
+.navSub {
+  flex: 1;
+}
