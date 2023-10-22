@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="input" method="post">
+        직업명<input type="text" name="JobName" maxlength="10">
+        <input type="submit" value="검색" formaction="/search">  
+    </form>
+
+<table border="1">
+    <%
+    for(var i=0; i<rows.length; i++)
+    {
+        var data = rows[i];
+    %>
+    
+    <tr>
+        <td><%=data.SkillName%></td>
+        <td><%=data.SkillEx%></td>
+        <td><img src= "<%=data.SkillImg%>" alt="이미지" width="100"/></td>
+        <td><%=data.TripodName1%></td>
+        <td><%=data.TripodEx1%></td>
+        <td><%=data.TripodName2%></td>
+        <td><%=data.TripodEx2%></td>
+        <td><%=data.TripodName3%></td>
+        <td><%=data.TripodEx3%></td>
+        <td><%=data.TripodName4%></td>
+        <td><%=data.TripodEx4%></td>
+        <td><%=data.TripodName5%></td>
+        <td><%=data.TripodEx5%></td>
+        <td><%=data.TripodName6%></td>
+        <td><%=data.TripodEx6%></td>
+        <td><%=data.TripodName7%></td>
+        <td><%=data.TripodEx7%></td>
+        <td><%=data.TripodName8%></td>
+        <td><%=data.TripodEx8%></td>       
+    </tr>
+    <%}
+    %>
+</table>
+
+</body>
+</html>
