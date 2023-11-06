@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="input" method="post">
+        내용<input type="text" name="contents" maxlength="100">
+        <input type="submit" value="글쓰기" formaction="/write1">  
+    </form>
+    <table border="1">
+        <%
+        for(var i=0; i<rows.length; i++)
+        {
+            var data = rows[i];
+        %>
+        <tr>
+            <td><%=data.SkillName%></td>
+            <td><%=data.SkillEx%></td>
+        </tr>
+        <%}
+        %>
+    </table>
+    
+
+
+</body>
+</html>
