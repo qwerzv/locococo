@@ -88,67 +88,56 @@ app.post('/inputpost',function(req,res){
     while((ex=regex.exec(sent))!==null){
         result.push(ex[1]);
     }
-    for (var i in result){
-        result[i] = JSON.stringify(result[i]);
-    }
-    let skillstr = result.join();
-    let sql = 'insert into post (Contents,Skill) values (?,?)';
-    let param = [req.body.contents,skillstr];
+    
+    let sql = 'insert into post (Contents,SkillName1,SkillName2,SkillName3,SkillName4,SkillName5) values (?,?,?,?,?,?)';
+    let param = [req.body.contents,result[0],result[1],result[2],result[3],result[4]];
     connection.query(sql,param,function(err){
         if(err){
             console.log(err);
         }
     })
 
-    res.redirect("/write");
+    res.redirect("/post");
     
 })
 
-app.post('/write1',function(req,res){
-    let sent = req.body.contents;
-    let regex = /\[(.*?)\]/g;
-    let ex;
-    while((ex=regex.exec(sent))!==null){
-        result.push(ex[1]);
-    }
-    for (var i in result){
-        result[i] = JSON.stringify(result[i]);
-    }
-    console.log(result);
-    res.redirect("/post1");
+// app.post('/write1',function(req,res){
+//     let sent = req.body.contents;
+//     let regex = /\[(.*?)\]/g;
+//     let ex;
+//     while((ex=regex.exec(sent))!==null){
+//         result.push(ex[1]);
+//     }
+//     for (var i in result){
+//         result[i] = JSON.stringify(result[i]);
+//     }
+//     console.log(result);
+//     res.redirect("/post1");
          
-})
-app.get('/write1',function(req,res,next){
-   res.render('write1');
+// })
+app.get('/write',function(req,res,next){
+   res.render('write');
 
 })
-app.get('/post1',function(req,res,next){
-    let sql = "select SkillName,SkillEx from skill where SkillName in "
-    console.log("여기"+result.join());
-    sql += "("+result.join()+")";
-    connection.query(sql,function(err,rows){
-            if(err) console.error;
-            console.log(rows);
-            res.render("post",{rows:rows});
-         })
-    result = [];
+// app.get('/post1',function(req,res,next){
+//     let sql = "select SkillName,SkillEx from skill where SkillName in "
+//     console.log("여기"+result.join());
+//     sql += "("+result.join()+")";
+//     connection.query(sql,function(err,rows){
+//             if(err) console.error;
+//             console.log(rows);
+//             res.render("post",{rows:rows});
+//          })
+//     result = [];
 
-})
+// })
 
 app.get('/post',function(req,res){
-    let sql = "select Contents,Skill from post "
+    let sql = "SELECT P.Contents,P.SkillName1, S1.SkillEx AS SkillEx1, S1.SkillImg AS SkillImg1, P.SkillName2, S2.SkillEx AS SkillEx2, S2.SkillImg AS SkillImg2, P.SkillName3, S3.SkillEx AS SkillEx3, S3.SkillImg AS SkillImg3 FROM Post AS P LEFT JOIN Skill AS S1 ON P.SkillName1 = S1.SkillName LEFT JOIN Skill AS S2 ON P.SkillName2 = S2.SkillName LEFT JOIN Skill AS S3 ON P.SkillName3 = S3.SkillName; "
     connection.query(sql,function(err,rows){
-        if(err) console.error;
-        let sql1 = "select SkillName,SkillEx from skill where SkillName in ";
-        console.log(rows[1].Skill);   
-        sql1 +="("+rows[1].Skill+")";
-        connection.query(sql1,function(err,rows1){
-            if(err) console.error;
-            console.log("2"+rows1);
-            res.render("post",{rows:rows1});
-        })
-        
-
+        if(err) console.error;       
+        console.log(rows);
+        res.render("post",{rows,rows})
     })
 })
 
