@@ -115,17 +115,21 @@ app.post('/write1',function(req,res){
         result[i] = JSON.stringify(result[i]);
     }
     console.log(result);
-    res.redirect("/write1");
+    res.redirect("/post1");
          
 })
-app.get('/write1',function(req,res){
+app.get('/write1',function(req,res,next){
+   res.render('write1');
+
+})
+app.get('/post1',function(req,res,next){
     let sql = "select SkillName,SkillEx from skill where SkillName in "
     console.log("여기"+result.join());
     sql += "("+result.join()+")";
     connection.query(sql,function(err,rows){
             if(err) console.error;
             console.log(rows);
-            res.render("write1",{rows:rows});
+            res.render("post",{rows:rows});
          })
     result = [];
 
