@@ -89,8 +89,8 @@ app.post('/inputpost',function(req,res){
         result.push(ex[1]);
     }
     
-    let sql = 'insert into post (Contents,SkillName1,SkillName2,SkillName3,SkillName4,SkillName5) values (?,?,?,?,?,?)';
-    let param = [req.body.contents,result[0],result[1],result[2],result[3],result[4]];
+    let sql = 'insert into post (Contents,Me,You,SkillName1,SkillName2,SkillName3,SkillName4,SkillName5) values (?,?,?,?,?,?,?,?)';
+    let param = [req.body.contents,req.body.me,req.body.you,result[0],result[1],result[2],result[3],result[4]];
     connection.query(sql,param,function(err){
         if(err){
             console.log(err);
@@ -133,7 +133,7 @@ app.get('/write',function(req,res,next){
 // })
 
 app.get('/post',function(req,res){
-    let sql = "SELECT P.Contents,P.SkillName1, S1.SkillEx AS SkillEx1, S1.SkillImg AS SkillImg1, P.SkillName2, S2.SkillEx AS SkillEx2, S2.SkillImg AS SkillImg2, P.SkillName3, S3.SkillEx AS SkillEx3, S3.SkillImg AS SkillImg3 FROM Post AS P LEFT JOIN Skill AS S1 ON P.SkillName1 = S1.SkillName LEFT JOIN Skill AS S2 ON P.SkillName2 = S2.SkillName LEFT JOIN Skill AS S3 ON P.SkillName3 = S3.SkillName; "
+    let sql = "SELECT P.Contents,P.SkillName1, S1.SkillEx AS SkillEx1, S1.SkillImg AS SkillImg1, P.SkillName2, S2.SkillEx AS SkillEx2, S2.SkillImg AS SkillImg2, P.SkillName3, S3.SkillEx AS SkillEx3, S3.SkillImg AS SkillImg3 FROM Post AS P LEFT JOIN Skill AS S1 ON P.SkillName1 = S1.SkillName LEFT JOIN Skill AS S2 ON P.SkillName2 = S2.SkillName LEFT JOIN Skill AS S3 ON P.SkillName3 = S3.SkillName WHERE ME = '인파이터' AND YOU='리퍼' ; "
     connection.query(sql,function(err,rows){
         if(err) console.error;       
         console.log(rows);
@@ -148,6 +148,17 @@ app.get('/post',function(req,res){
     res.redirect('/skilldb/' );
   })
 
+//   app.get('/skilldb/:job', function(req,res,next){
+//     const sql = "select SkillName,SkillEx,SkillImg,TripodName1,TripodEx1,TripodName2,TripodEx2,TripodName3,TripodEx3,TripodName4,TripodEx4,TripodName5,TripodEx5,TripodName6,TripodEx6,TripodName7,TripodEx7,TripodName8,TripodEx8 from skill where JobName = ? "  ;
+//     var param = req.params.job;
+//     console.log(param);
+//     connection.query(sql,[param],function(err,rows){
+//             if(err) console.error;
+//             res.render("skilldb",{rows:rows});
+//          })
+ 
+
+//   })
   app.get('/skilldb', function(req,res,next){
     const sql = "select SkillName,SkillEx,SkillImg,TripodName1,TripodEx1,TripodName2,TripodEx2,TripodName3,TripodEx3,TripodName4,TripodEx4,TripodName5,TripodEx5,TripodName6,TripodEx6,TripodName7,TripodEx7,TripodName8,TripodEx8 from skill where JobName = ? "  ;
     var param = jobname;
@@ -158,6 +169,7 @@ app.get('/post',function(req,res){
  
 
   })
+
 
 
 app.listen(app.get('port'),()=>{
