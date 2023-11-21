@@ -7,9 +7,19 @@
 </head>
 <body>
     <form name="input" method="post">
-        직업명<input type="text" name="JobName" maxlength="10">
-        <input type="submit" value="검색" formaction="/search">  
+        <!-- 직업명<input type="text" name="JobName" maxlength="10">
+        <input type="submit" value="검색" formaction="/search">   -->
+        <button type="submit" name="job" value="건슬링어" formaction="/search">건슬링어</button>
+        <button type="submit" name="job" value="기공사" formaction="/search">기공사</button>
+        <button type="submit" name="job" value="기상술사" formaction="/search">기상술사</button>
+        <button type="submit" name="job" value="데모닉" formaction="/search">데모닉</button>
+        <button type="submit" name="job" value="데빌헌터" formaction="/search">데빌헌터</button>
+        <button type="submit" name="job" value="도화가" formaction="/search">도화가</button>
+        <button type="submit" name="job" value="디스트로이어" formaction="/search">디스트로이어</button>
+        <button type="submit" name="job" value="워로드" formaction="/search">워로드</button>
+        <button type="submit" name="job" value="인파이터" formaction="/search">인파이터</button>
     </form>
+
 
 <table border="1">
     <%
@@ -21,7 +31,7 @@
     <tr>
         <td><%=data.SkillName%></td>
         <td><%=data.SkillEx%></td>
-        <td><img src= "<%=data.SkillImg%>" alt="이미지" width="100"/></td>
+        <td><img src= "<%=data.SkillImg%>" alt="이미지" width="250"/></td>
         <td><%=data.TripodName1%></td>
         <td><%=data.TripodEx1%></td>
         <td><%=data.TripodName2%></td>

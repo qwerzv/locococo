@@ -6,6 +6,21 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <form name="input" method="post">
+        내 직업:
+        <button type="submit" name="me" value="리퍼" formaction="/postsearch">리퍼</button>
+        <button type="submit" name="me" value="인파이터" formaction="/postsearch">인파이터</button>
+        <button type="submit" name="me" value="워로드" formaction="/postsearch">워로드</button>
+        <button type="submit" name="me" value="디스트로이어" formaction="/postsearch">디스트로이어</button>
+    </form>
+    <form name="input" method="post">
+        상대 직업:
+        <button type="submit" name="you" value="리퍼" formaction="/postsearch1">리퍼</button>
+        <button type="submit" name="you" value="인파이터" formaction="/postsearch1">인파이터</button>
+        <button type="submit" name="you" value="워로드" formaction="/postsearch1">워로드</button>
+        <button type="submit" name="you" value="디스트로이어" formaction="/postsearch1">디스트로이어</button>
+    </form>
     <table border="1">
         <%
         for(var i=0; i<rows.length; i++)
@@ -29,6 +44,13 @@
         <%}
         %>
     </table>
+    <form name="input" method="post">
+        내용<input type="text" name="contents" maxlength="100">
+        <input type="submit" value="글쓰기" formaction="/inputpost1">  
+    </form>
+
+    <button type="button" onclick="location.href='/write' ">글쓰기</button>
+
     
 </body>
 </html>
