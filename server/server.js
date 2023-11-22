@@ -7,6 +7,7 @@ const multer = require('multer');
 
 const app = express();
 app.use("/images",express.static('images'));
+app.use(express.static(path.join(__dirname,'public')));
 app.set('port',process.env.PORT ||3000);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true})) 
