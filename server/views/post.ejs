@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/post.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    
+    <form name="input" method="post">
+        내 직업:
+        <button type="submit" name="me" value="리퍼" formaction="/postsearch">리퍼</button>
+        <button type="submit" name="me" value="인파이터" formaction="/postsearch">인파이터</button>
+        <button type="submit" name="me" value="워로드" formaction="/postsearch">워로드</button>
+        <button type="submit" name="me" value="디스트로이어" formaction="/postsearch">디스트로이어</button>
+    </form>
+    <form name="input" method="post">
+        상대 직업:
+        <button type="submit" name="you" value="리퍼" formaction="/postsearch1">리퍼</button>
+        <button type="submit" name="you" value="인파이터" formaction="/postsearch1">인파이터</button>
+        <button type="submit" name="you" value="워로드" formaction="/postsearch1">워로드</button>
+        <button type="submit" name="you" value="디스트로이어" formaction="/postsearch1">디스트로이어</button>
+    </form>
+    <div id = "tagArea"></div>
+    <script>
+        let b="";
+        let c=""
+        let tagArea = document.getElementById('tagArea');
+    </script>
+    <table border="1">
+        <%
+        for(var i=0; i<rows.length; i++)
+        {
+            var data = rows[i];
+        %>
+        <tr>
+            <td><%=data.Contents%></td>
+            <td><%=data.SkillName1%></td>
+            <td><%=data.SkillEx1%></td>
+            <td><img src= "<%=data.SkillImg1%>" alt="이미지" width="100"/></td>
+            <td><%=data.SkillName2%></td>
+            <td><%=data.SkillEx2%></td>
+            <td><img src= "<%=data.SkillImg2%>" alt="이미지" width="100"/></td>
+            <td><%=data.SkillName3%></td>
+            <td><%=data.SkillEx3%></td>
+            <td><img src= "<%=data.SkillImg3%>" alt="이미지" width="100"/></td>
+           
+            <script>
+                var a = "<%=data.Contents%>";
+                a = a.replace("<%=data.SkillName1%>","<span class='test1'>"+"<%=data.SkillName1%>"+"</span>");
+                a = a.replace("<%=data.SkillName2%>","<span class='test2'>"+"<%=data.SkillName2%>"+"</span>");
+                a = a.replace("<%=data.SkillName3%>","<span class='test3'>"+"<%=data.SkillName3%>"+"</span>");
+                console.log(a);
+                b = document.createElement('div');
+                b.id = "postnum";
+                b.innerHTML = a;
+                var a1 = "<%=data.SkillName1%>" +'</br>' +"<%=data.SkillEx1%>" +'</br>'+'<img src= "<%=data.SkillImg1%>" alt="이미지" width="200"/>'+'</br>';
+                tip1 =  document.createElement('span');
+                tip1.id = "toolskill1";
+                tip1.innerHTML = a1;
+                var a2 = "<%=data.SkillName2%>" +'</br>' +"<%=data.SkillEx2%>" +'</br>'+'<img src= "<%=data.SkillImg2%>" alt="이미지" width="200"/>'+'</br>';
+                tip2 =  document.createElement('span');
+                tip2.id = "toolskill2";
+                tip2.innerHTML = a2;
+                var a3 = "<%=data.SkillName3%>" +'</br>' +"<%=data.SkillEx3%>" +'</br>'+'<img src= "<%=data.SkillImg3%>" alt="이미지" width="200"/>'+'</br>';
+                tip3 =  document.createElement('span');
+                tip3.id = "toolskill3";
+                tip3.innerHTML = a3;
+                
+                
+                tagArea.appendChild(b);
+                b.appendChild(tip1);
+                b.appendChild(tip2);
+                b.appendChild(tip3);
+
+
+            </script>
+            
+        </tr>
+        <%}
+        %>
+    </table>
+    <form name="input" method="post">
+        내용<input type="text" name="contents" maxlength="100">
+        <input type="submit" value="글쓰기" formaction="/inputpost1">  
+    </form>
+
+    <button type="button" onclick="location.href='/write' ">글쓰기</button>
+
+    
+</body>
+</html>

@@ -1,0 +1,21 @@
+#toolskill1,#toolskill2,#toolskill3 {
+    display: none;
+    position: absolute;
+    max-width: 200px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8em;
+    color: white;
+    background: deeppink;
+}
+
+.test1:hover ~ #toolskill1{
+    display: block;
+}
+.test2:hover ~ #toolskill2{
+    display: block;
+}
+.test3:hover ~ #toolskill3{
+    display: block;
+}
